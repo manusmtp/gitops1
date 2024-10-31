@@ -1,27 +1,30 @@
-name: DockerHub Login and List Images
+name: Build and Push Docker Image
 
-on: 
+on:
   push:
     branches:
       - main
 
 jobs:
-  list-docker-images:
+  build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Login to DockerHub
-      run: echo "${{ secrets.DOCKERMANU }}" | docker login -u ${{ secrets.DOCK_NAME }} --password-stdin
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
 
-    - name: git check 
-      run: echo "This test is to check the secret in gitlab ${{ secrets.DOCK_NAME }}  "
+    - name: Log in to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCK_NAME }}
+        password: ${{ secrets.DOCKERMANU }}
 
-    - name: List DockerHub Images
-      run: docker images
-
-    - name: post run 
-      if: always()
-      run: echo "Running for the victory"
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: manusmtp/myapp:latest
