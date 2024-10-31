@@ -17,13 +17,13 @@ jobs:
       uses: docker/setup-buildx-action@v1
 
     - name: Log in to DockerHub
-      uses: docker/github-actions
+      uses: docker/github-actions@v1
       with:
         username: ${{ secrets.DOCK_NAME }}
         password: ${{ secrets.DOCKERMANU }}
 
     - name: Build and push Docker image
-      uses: docker/github-actions
+      uses: docker/github-actions@v1
       with:
         context: .
         file: ./Dockerfile
