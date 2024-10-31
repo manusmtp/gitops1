@@ -23,5 +23,5 @@ jobs:
       run: docker images
 
     - name: post run 
-      if: always
+      if: always()
       run: echo "Running for the victory"
