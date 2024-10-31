@@ -28,4 +28,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: manusmtp/myapp:latest
+        tags: dockermanuprasad/manuapp:latest
+
+
