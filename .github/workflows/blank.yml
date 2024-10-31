@@ -19,12 +19,13 @@ jobs:
     - name: Log in to DockerHub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCK_NAME }}
-        password: ${{ secrets.DOCKERMANU }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
         context: .
+        file: ./Dockerfile
         push: true
         tags: manusmtp/myapp:latest
