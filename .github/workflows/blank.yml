@@ -16,5 +16,8 @@ jobs:
     - name: Login to DockerHub
       run: echo "${{ secrets.DOCKERMANU }}" | docker login -u ${{ secrets.DOCK_NAME }} --password-stdin
 
+    - name: git check 
+      run: echo "This test is to check the secret in gitlab ${{ secrets.DOCK_NAME }}  "
+
     - name: List DockerHub Images
       run: docker images
