@@ -21,3 +21,7 @@ jobs:
 
     - name: List DockerHub Images
       run: docker images
+
+    - name: post run 
+      if: always
+      run: echo "Running for the victory"
