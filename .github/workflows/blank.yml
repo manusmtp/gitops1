@@ -31,3 +31,19 @@ jobs:
         tags: dockermanuprasad/manuapp:latest
 
 
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build_dev: 
+    runs_on: macos-15 
+
+    steps: 
+    - name: checkout the branch
+      uses: actions/checkout@v3
+
+
+
+
