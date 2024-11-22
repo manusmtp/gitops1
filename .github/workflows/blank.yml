@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - dev
 
 jobs:
-  build:
+  build_main:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -30,20 +32,10 @@ jobs:
         push: true
         tags: dockermanuprasad/manuapp:latest
 
+  build_dev:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: macos-12
 
-on:
-  push:
-    branches:
-      - dev
-
-jobs:
-  build_dev: 
-    runs_on: macos-15 
-
-    steps: 
-    - name: checkout the branch
+    steps:
+    - name: Checkout the branch
       uses: actions/checkout@v3
-
-
-
-
